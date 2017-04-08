@@ -1,4 +1,10 @@
 /*==========================
+          colors
+==========================*/
+$baseTextColor : #222222;
+
+
+/*==========================
         baseWidth
 ==========================*/
 $xsWidth : 340px; //iphone5
@@ -49,9 +55,9 @@ $sanSerif : -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Hiragino Sans'
 
 //defalt
 @mixin defalt-font {
-  $fz: 16; //font-size
-  $lh: 24; //line-height
-  $ls: 50; //letter-spercing
+  $fz : 16; //font-size
+  $lh : 24; //line-height
+  $ls : 50; //letter-spercing
 
   font-size: #{($fz/10)}rem;
   line-height: $lh/$fz;
@@ -61,9 +67,9 @@ $sanSerif : -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Hiragino Sans'
 
 //sp-defalt
 @mixin sp-defalt-font {
-  $fz: 14; //font-size
-  $lh: 21; //line-height
-  $ls: 50; //letter-spercing
+  $fz : 14; //font-size
+  $lh : 21; //line-height
+  $ls : 50; //letter-spercing
 
   font-size: #{($fz/10)}rem;
   line-height: $lh/$fz;
