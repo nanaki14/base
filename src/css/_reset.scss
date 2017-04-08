@@ -11,6 +11,7 @@
 }
 
 html,body {
+  -webkit-text-size-adjust: 100%;
   width: 100%;
   height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', '游ゴシック  Medium', meiryo, sans-serif;
@@ -37,4 +38,17 @@ table {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+//form reset
+input, button, textarea, select {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
