@@ -1,0 +1,71 @@
+/*==========================
+        baseWidth
+==========================*/
+$xsWidth : 340px; //iphone5
+$sWidth : 780px; //smartPhone - ipad
+$mWidth : 1024px; //ipad横 & ipadPro - 小型PC
+$lWidth : 1200px; //PCSize
+
+
+/*==========================
+       break-points
+==========================*/
+@mixin smallSPOnly { //iphone5　size
+  @media (max-width: $xsWidth) {
+    @content
+  }
+}
+
+@mixin SPOnly { //iphone↓　size
+  @media (max-width: $sWidth - 1px) {
+    @content
+  }
+}
+
+@mixin smallPCOnly { //ipad - ipadPro　size
+  @media (min-width: $sWidth) and (max-width: $mWidth) {
+    @content
+  }
+}
+
+@mixin largePCOnly { //1025px↑　size
+  @media (min-width: $lWidth + 1px) {
+    @content
+  }
+}
+
+
+/*==========================
+           font
+==========================*/
+
+/*font-family
+==========================*/
+$sanSerif : -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', '游ゴシック  Medium', meiryo, sans-serif;
+
+
+/*font-size
+==========================*/
+
+//defalt
+@mixin defalt-font {
+  $fz: 16; //font-size
+  $lh: 24; //line-height
+  $ls: 50; //letter-spercing
+
+  font-size: #{($fz/10)}rem;
+  line-height: $lh/$fz;
+  letter-spacing: #{($ls/1000)}em;
+}
+
+
+//sp-defalt
+@mixin sp-defalt-font {
+  $fz: 14; //font-size
+  $lh: 21; //line-height
+  $ls: 50; //letter-spercing
+
+  font-size: #{($fz/10)}rem;
+  line-height: $lh/$fz;
+  letter-spacing: #{($ls/1000)}em;
+}
