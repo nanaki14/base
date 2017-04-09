@@ -19,25 +19,25 @@ $lWidth : 1200px; //PCSize
 /*==========================
        break-points
 ==========================*/
-@mixin smallSPOnly { //iphone5　size
+@mixin mqSmallSPOnly { //iphone5　size
   @media (max-width: $xsWidth) {
     @content
   }
 }
 
-@mixin SPOnly { //iphone↓　size
+@mixin mqSPOnly { //iphone↓　size
   @media (max-width: $sWidth - 1px) {
     @content
   }
 }
 
-@mixin smallPCOnly { //ipad - ipadPro　size
+@mixin mqSmallPCOnly { //ipad - ipadPro　size
   @media (min-width: $sWidth) and (max-width: $mWidth) {
     @content
   }
 }
 
-@mixin largePCOnly { //1025px↑　size
+@mixin mqLargePCOnly { //1025px↑　size
   @media (min-width: $lWidth + 1px) {
     @content
   }
