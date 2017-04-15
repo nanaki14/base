@@ -1,48 +1,19 @@
 /*==========================
           colors
 ==========================*/
-$baseColor : #000000;
+$base-color : #000000;
 
 //font
-$baseTextColor : #222222;
+$base-text-color : #222222;
 
 
 /*==========================
         baseWidth
 ==========================*/
-$xsWidth : 340px; //iphone5
-$sWidth : 780px; //smartPhone - ipad
-$mWidth : 1024px; //ipad横 & ipadPro - 小型PC
-$lWidth : 1200px; //PCSize
-
-
-/*==========================
-       break-points
-==========================*/
-@mixin mqSmallSPOnly { //iphone5　size
-  @media (max-width: $xsWidth) {
-    @content
-  }
-}
-
-@mixin mqSPOnly { //iphone↓　size
-  @media (max-width: $sWidth - 1px) {
-    @content
-  }
-}
-
-@mixin mqSmallPCOnly { //ipad - ipadPro　size
-  @media (min-width: $sWidth) and (max-width: $mWidth) {
-    @content
-  }
-}
-
-@mixin mqLargePCOnly { //1025px↑　size
-  @media (min-width: $lWidth + 1px) {
-    @content
-  }
-}
-
+$xs-width : 340px; //iphone5
+$s-width : 780px; //smartPhone - ipad
+$m-width : 1024px; //ipad横 & ipadPro - 小型PC
+$l-width : 1200px; //PCSize
 
 /*==========================
            font
@@ -50,7 +21,7 @@ $lWidth : 1200px; //PCSize
 
 /*font-family
 ==========================*/
-$sanSerif : -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', '游ゴシック  Medium', meiryo, sans-serif;
+$san-serif : -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', '游ゴシック  Medium', meiryo, sans-serif;
 
 
 /*font-size
