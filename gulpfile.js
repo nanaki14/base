@@ -1,13 +1,16 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
-var csscomb = require('gulp-csscomb');
-//var ejs = require('gulp-ejs');
-//var babel = require('gulp-babel');
-var browserSync = require('browser-sync').create();
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const csscomb = require('gulp-csscomb');
+//const ejs = require('gulp-ejs');
+//const babel = require('gulp-babel');
+const imagemin = require("gulp-imagemin");
+const uglify = require('gulp-uglify');
+const pump = require('pump');
+const browserSync = require('browser-sync').create();
 
-
-gulp.task('sass', function () {
+//sassコンパイル
+gulp.task('sass', () => {
   return gulp.src([
     'src/**/*.scss'
   ])
@@ -26,7 +29,23 @@ gulp.task('sass', function () {
     .pipe(browserSync.stream());
 });
 
-gulp.task('copy', function () {
+gulp.task('uglify', () => {
+  gulp.src('src/**/*.js')
+    .pipe(uglify({preserveComments: 'license'}))
+    .pipe(gulp.dest('html'));
+});
+
+//画像圧縮
+gulp.task('imagemin', () => {
+  gulp.src([
+    "src/**/*.jpg",
+    "src/**/*.png"
+  ])
+    .pipe(imagemin())
+    .pipe(gulp.dest("html"));
+});
+
+gulp.task('copy', () => {
   return gulp.src([
     'src/**/*',
     '!src/**/*.scss'
@@ -35,7 +54,7 @@ gulp.task('copy', function () {
     .pipe(browserSync.stream());
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', () => {
   browserSync.init({
     server: {
       baseDir: "html"
@@ -43,10 +62,13 @@ gulp.task('watch', function () {
   });
 
   gulp.watch(['src/**/*.scss'], ['sass']);
+  gulp.watch(['src/**/*.js'], ['uglify']);
+  gulp.watch(['src/**/*.jpg'], ['imagemin']);
+  gulp.watch(['src/**/*.png'], ['imagemin']);
   gulp.watch([
     'src/**/*',
     '!src/**/*.scss'
     ], ['copy']);
 });
 
-gulp.task('default', ['copy', 'sass', 'watch']);
+gulp.task('default', ['copy', 'sass', 'watch', 'imagemin', 'uglify']);
