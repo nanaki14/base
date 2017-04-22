@@ -2,11 +2,11 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const csscomb = require('gulp-csscomb');
-//const ejs = require('gulp-ejs');
+const ejs = require('gulp-ejs');
 //const babel = require('gulp-babel');
 const imagemin = require("gulp-imagemin");
 const uglify = require('gulp-uglify');
-const pump = require('pump');
+var plumber  = require("gulp-plumber");
 const browserSync = require('browser-sync').create();
 
 //sassコンパイル
@@ -15,6 +15,7 @@ gulp.task('sass', () => {
     'src/**/*.scss'
   ])
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(plumber())
     .pipe(autoprefixer({
       browsers: [
         'last 2 version',
@@ -29,6 +30,17 @@ gulp.task('sass', () => {
     .pipe(browserSync.stream());
 });
 
+gulp.task('ejs', () => {
+  return gulp.src([
+    'src/*.ejs',
+    '!' + 'src/**/_*.ejs'
+  ])
+    .pipe(ejs({},{},{'ext': '.html'}))
+    .pipe(gulp.dest("html"));
+});
+
+
+//js圧縮
 gulp.task('uglify', () => {
   gulp.src('src/**/*.js')
     .pipe(uglify({preserveComments: 'license'}))
@@ -48,7 +60,9 @@ gulp.task('imagemin', () => {
 gulp.task('copy', () => {
   return gulp.src([
     'src/**/*',
-    '!src/**/*.scss'
+    '!src/**/*.scss',
+    '!src/*.ejs',
+    '!src/_*.ejs'
   ])
     .pipe(gulp.dest('html'))
     .pipe(browserSync.stream());
@@ -62,6 +76,7 @@ gulp.task('watch', () => {
   });
 
   gulp.watch(['src/**/*.scss'], ['sass']);
+  gulp.watch(['src/*.ejs'], ['ejs']);
   gulp.watch(['src/**/*.js'], ['uglify']);
   gulp.watch(['src/**/*.jpg'], ['imagemin']);
   gulp.watch(['src/**/*.png'], ['imagemin']);
@@ -71,4 +86,4 @@ gulp.task('watch', () => {
     ], ['copy']);
 });
 
-gulp.task('default', ['copy', 'sass', 'watch', 'imagemin', 'uglify']);
+gulp.task('default', ['copy', 'sass', 'ejs', 'watch', 'imagemin', 'uglify']);
