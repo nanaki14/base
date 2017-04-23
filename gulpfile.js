@@ -61,6 +61,7 @@ gulp.task('copy', () => {
   return gulp.src([
     'src/**/*',
     '!src/**/*.scss',
+    '!src/**/*.js',
     '!src/*.ejs',
     '!src/_*.ejs'
   ])
