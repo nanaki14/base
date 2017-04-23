@@ -49,10 +49,7 @@ gulp.task('uglify', () => {
 
 //画像圧縮
 gulp.task('imagemin', () => {
-  gulp.src([
-    "src/**/*.jpg",
-    "src/**/*.png"
-  ])
+  gulp.src("src/**/*.+(jpg|png|gif|svg)")
     .pipe(imagemin())
     .pipe(gulp.dest("html"));
 });
@@ -79,8 +76,7 @@ gulp.task('watch', () => {
   gulp.watch(['src/**/*.scss'], ['sass']);
   gulp.watch(['src/*.ejs'], ['ejs']);
   gulp.watch(['src/**/*.js'], ['uglify']);
-  gulp.watch(['src/**/*.jpg'], ['imagemin']);
-  gulp.watch(['src/**/*.png'], ['imagemin']);
+  gulp.watch(['src/**/*.+(jpg|png|gif|svg)'], ['imagemin']);
   gulp.watch([
     'src/**/*',
     '!src/**/*.scss'
