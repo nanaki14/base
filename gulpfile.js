@@ -61,6 +61,7 @@ gulp.task('copy', () => {
     '!src/**/*.js',
     '!src/*.ejs',
     '!src/_*.ejs'
+    '!src/_*.+(jpg|png|gif|svg)'
   ])
     .pipe(gulp.dest('html'))
     .pipe(browserSync.stream());
@@ -83,4 +84,4 @@ gulp.task('watch', () => {
     ], ['copy']);
 });
 
-gulp.task('default', ['copy', 'sass', 'ejs', 'watch', 'imagemin', 'uglify']);
+gulp.task('default', ['copy', 'sass', 'ejs', 'watch', 'uglify']);
