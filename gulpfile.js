@@ -6,8 +6,8 @@ const ejs = require('gulp-ejs');
 //const babel = require('gulp-babel');
 const imagemin = require("gulp-imagemin");
 const uglify = require('gulp-uglify');
-var plumber  = require("gulp-plumber");
-var notify = require('gulp-notify');
+const plumber  = require("gulp-plumber");
+const notify = require('gulp-notify');
 const browserSync = require('browser-sync').create();
 
 //sassコンパイル
