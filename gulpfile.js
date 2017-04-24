@@ -60,8 +60,8 @@ gulp.task('copy', () => {
     '!src/**/*.scss',
     '!src/**/*.js',
     '!src/*.ejs',
-    '!src/_*.ejs'
-    '!src/_*.+(jpg|png|gif|svg)'
+    '!src/_*.ejs',
+    '!src/*.+(jpg|png|gif|svg)'
   ])
     .pipe(gulp.dest('html'))
     .pipe(browserSync.stream());
