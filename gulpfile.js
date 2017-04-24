@@ -57,10 +57,11 @@ gulp.task('imagemin', () => {
 gulp.task('copy', () => {
   return gulp.src([
     'src/**/*',
+    '!src/_**',
     '!src/**/*.scss',
     '!src/**/*.js',
     '!src/*.ejs',
-    '!src/_*.ejs',
+    '!src/**/_*.ejs',
     '!src/*.+(jpg|png|gif|svg)'
   ])
     .pipe(gulp.dest('html'))
