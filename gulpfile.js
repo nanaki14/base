@@ -46,6 +46,7 @@ gulp.task('ejs', () => {
 gulp.task('uglify', () => {
   gulp.src('src/**/*.js')
     .pipe(uglify({preserveComments: 'license'}))
+    .pipe(plumber())
     .pipe(gulp.dest('html'));
 });
 
