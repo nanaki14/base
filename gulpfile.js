@@ -7,6 +7,7 @@ const ejs = require('gulp-ejs');
 const imagemin = require("gulp-imagemin");
 const uglify = require('gulp-uglify');
 var plumber  = require("gulp-plumber");
+var notify = require('gulp-notify');
 const browserSync = require('browser-sync').create();
 
 //sassコンパイル
@@ -15,7 +16,7 @@ gulp.task('sass', () => {
     'src/**/*.scss'
   ])
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
     .pipe(autoprefixer({
       browsers: [
         'last 2 version',
@@ -35,8 +36,9 @@ gulp.task('ejs', () => {
     'src/*.ejs',
     '!' + 'src/**/_*.ejs'
   ])
-    .pipe(ejs({},{},{'ext': '.html'}))
-    .pipe(gulp.dest("html"));
+      .pipe(ejs({},{},{'ext': '.html'}))
+      .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
+      .pipe(gulp.dest("html"));
 });
 
 
