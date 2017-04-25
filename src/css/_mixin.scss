@@ -55,11 +55,3 @@
   text-indent: 100%;
   white-space: nowrap;
 }
-
-//先の要素のline-height計算
-@mixin marginTop($baseMargin, $fontSize, $lineHeight) {
-  margin-top: calc(#{$baseMargin} - (((#{$fontSize} * #{$lineHeight}) - #{$fontSize}) / 2));
-}
-@mixin marginBottom($baseMargin, $fontSize, $lineHeight) {
-  margin-bottom: calc(#{$baseMargin} - (((#{$fontSize} * #{$lineHeight}) - #{$fontSize}) / 2));
-}
