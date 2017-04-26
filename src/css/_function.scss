@@ -19,5 +19,5 @@
 //要素のパーセント求める(マージン、パディングなんでも使えるアレ)
 //percentSpace(自分の幅, 親の幅)
 @function percentSpace($thisWidth, $rootWidth) {
-  @return $thisWidth / $rootWidth * 100 + %;
+  @return $thisWidth / $rootWidth * 100%;
 }
