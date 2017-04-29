@@ -34,7 +34,7 @@ $san-serif : -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Hiragino Sans
   $ls : 50; //letter-spercing
 
   font-size: #{($fz/10)}rem;
-  line-height: $lh/$fz;
+  line-height: ($lh/$fz);
   letter-spacing: #{($ls/1000)}em;
 }
 
@@ -46,7 +46,7 @@ $san-serif : -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Hiragino Sans
   $ls : 50; //letter-spercing
 
   font-size: #{($fz/10)}rem;
-  line-height: $lh/$fz;
+  line-height: ($lh/$fz);
   letter-spacing: #{($ls/1000)}em;
 }
 
