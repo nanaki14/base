@@ -50,6 +50,17 @@ gulp.task('uglify', () => {
     .pipe(gulp.dest('html'));
 });
 
+
+//es6 => es5
+// gulp.task('babel', () => {
+//   return gulp.src('src/**/*.es6')
+//     .pipe(babel({
+//       presets: ['es2015']
+//     }))
+//     .pipe(gulp.dest('html'));
+// });
+
+
 //画像圧縮
 gulp.task('imagemin', () => {
   gulp.src("src/**/*.+(jpg|png|gif|svg)")
@@ -63,6 +74,7 @@ gulp.task('copy', () => {
     '!src/_**',
     '!src/**/*.scss',
     '!src/**/*.js',
+    //'!src/**/*.es6',
     '!src/*.ejs',
     '!src/**/_*.ejs',
     '!src/*.+(jpg|png|gif|svg)'
@@ -79,6 +91,7 @@ gulp.task('watch', () => {
   });
 
   gulp.watch(['src/**/*.scss'], ['sass']);
+  // gulp.watch(['src/**/*.es6'], ['babel']);
   gulp.watch(['src/*.ejs'], ['ejs']);
   gulp.watch(['src/**/*.js'], ['uglify']);
   gulp.watch(['src/**/*.+(jpg|png|gif|svg)'], ['imagemin']);
@@ -88,4 +101,4 @@ gulp.task('watch', () => {
     ], ['copy']);
 });
 
-gulp.task('default', ['copy', 'sass', 'ejs', 'watch', 'uglify']);
+gulp.task('default', ['copy', 'sass', 'ejs', 'watch', 'uglify'/*, 'babel'*/]);
