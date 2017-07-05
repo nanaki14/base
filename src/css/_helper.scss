@@ -73,12 +73,12 @@
 }
 @for $i from 0 through 10 {
   .hp-mb#{$i * 5} {
-    padding-top: #{$i * 5}px !important;
+    padding-bottom: #{$i * 5}px !important;
   }
 }
 @for $i from 0 through 10 {
   .hp-ml#{$i * 5} {
-    padding-top:#{$i * 5}px !important;
+    padding-left:#{$i * 5}px !important;
   }
 }
 
