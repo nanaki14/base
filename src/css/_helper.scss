@@ -44,12 +44,12 @@
 }
 @for $i from 0 through 10 {
   .hp-mb#{$i * 5} {
-    margin-top: #{$i * 5}px !important;
+    margin-bottom: #{$i * 5}px !important;
   }
 }
 @for $i from 0 through 10 {
   .hp-ml#{$i * 5} {
-    margin-top:#{$i * 5}px !important;
+    margin-left:#{$i * 5}px !important;
   }
 }
 
