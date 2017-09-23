@@ -57,27 +57,27 @@
 ==========================*/
 
 @for $i from 0 through 10 {
-  .hp-mg#{$i * 5} {
+  .hp-pg#{$i * 5} {
     padding: #{$i * 5}px !important;
   }
 }
 @for $i from 0 through 10 {
-  .hp-mt#{$i * 5} {
+  .hp-pt#{$i * 5} {
     padding-top: #{$i * 5}px !important;
   }
 }
 @for $i from 0 through 10 {
-  .hp-mr#{$i * 5} {
+  .hp-pr#{$i * 5} {
     padding-right: #{$i * 5}px !important;
   }
 }
 @for $i from 0 through 10 {
-  .hp-mb#{$i * 5} {
+  .hp-pb#{$i * 5} {
     padding-bottom: #{$i * 5}px !important;
   }
 }
 @for $i from 0 through 10 {
-  .hp-ml#{$i * 5} {
+  .hp-pl#{$i * 5} {
     padding-left:#{$i * 5}px !important;
   }
 }

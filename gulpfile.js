@@ -1,22 +1,30 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 const csscomb = require('gulp-csscomb');
 const ejs = require('gulp-ejs');
 //const babel = require('gulp-babel');
 const imagemin = require("gulp-imagemin");
 const uglify = require('gulp-uglify');
-const plumber  = require("gulp-plumber");
+const plumber = require("gulp-plumber");
 const notify = require('gulp-notify');
 const browserSync = require('browser-sync').create();
 
 //sassコンパイル
 gulp.task('sass', () => {
   return gulp.src([
-    'src/**/*.scss'
-  ])
-    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
+      'src/**/*.scss'
+    ])
+    .pipe(sourcemaps.init())
+    .pipe(sass({
+      outputStyle: 'compressed'
+    }).on('error', sass.logError))
+    .pipe(sourcemaps.write({includeContent: false}))
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(plumber({
+      errorHandler: notify.onError('<%= error.message %>')
+    }))
     .pipe(autoprefixer({
       browsers: [
         'last 2 version',
@@ -27,25 +35,32 @@ gulp.task('sass', () => {
       cascade: false
     }))
     .pipe(csscomb())
+    .pipe(sourcemaps.write('/maps'))
     .pipe(gulp.dest('html'))
     .pipe(browserSync.stream());
 });
 
 gulp.task('ejs', () => {
   return gulp.src([
-    'src/*.ejs',
-    '!' + 'src/**/_*.ejs'
-  ])
-      .pipe(ejs({},{},{'ext': '.html'}))
-      .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
-      .pipe(gulp.dest("html"));
+      'src/*.ejs',
+      '!' + 'src/**/_*.ejs'
+    ])
+    .pipe(ejs({}, {}, {
+      'ext': '.html'
+    }))
+    .pipe(plumber({
+      errorHandler: notify.onError('<%= error.message %>')
+    }))
+    .pipe(gulp.dest("html"));
 });
 
 
 //js圧縮
 gulp.task('uglify', () => {
   gulp.src('src/**/*.js')
-    .pipe(uglify({preserveComments: 'license'}))
+    .pipe(uglify({
+      preserveComments: 'license'
+    }))
     .pipe(plumber())
     .pipe(gulp.dest('html'));
 });
@@ -70,15 +85,15 @@ gulp.task('imagemin', () => {
 
 gulp.task('copy', () => {
   return gulp.src([
-    'src/**/*',
-    '!src/_**',
-    '!src/**/*.scss',
-    '!src/**/*.js',
-    //'!src/**/*.es6',
-    '!src/*.ejs',
-    '!src/**/_*.ejs',
-    '!src/*.+(jpg|png|gif|svg)'
-  ])
+      'src/**/*',
+      '!src/_**',
+      '!src/**/*.scss',
+      '!src/**/*.js',
+      //'!src/**/*.es6',
+      '!src/*.ejs',
+      '!src/**/_*.ejs',
+      '!src/*.+(jpg|png|gif|svg)'
+    ])
     .pipe(gulp.dest('html'))
     .pipe(browserSync.stream());
 });
@@ -98,7 +113,7 @@ gulp.task('watch', () => {
   gulp.watch([
     'src/**/*',
     '!src/**/*.scss'
-    ], ['copy']);
+  ], ['copy']);
 });
 
-gulp.task('default', ['copy', 'sass', 'ejs', 'watch', 'uglify'/*, 'babel'*/]);
+gulp.task('default', ['copy', 'watch']);
