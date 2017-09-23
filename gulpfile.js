@@ -116,4 +116,4 @@ gulp.task('watch', () => {
   ], ['copy']);
 });
 
-gulp.task('default', ['copy', 'watch']);
+gulp.task('default', ['copy','sass','ejs','uglify','imagemin','watch']);
