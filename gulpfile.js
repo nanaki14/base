@@ -2,29 +2,36 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
-const csscomb = require('gulp-csscomb');
-const ejs = require('gulp-ejs');
-//const babel = require('gulp-babel');
 const imagemin = require("gulp-imagemin");
+const mozjpeg = require('imagemin-mozjpeg');
+const pngquant = require('imagemin-pngquant');
+const gifsicle = require('imagemin-gifsicle');
+const svgo = require('imagemin-svgo');
 const uglify = require('gulp-uglify');
+const browserify = require('gulp-browserify');
+const babel = require('gulp-babel');
 const plumber = require("gulp-plumber");
+const ejs = require('gulp-ejs');
 const notify = require('gulp-notify');
+const changed = require('gulp-changed');
 const browserSync = require('browser-sync').create();
+
+const baseDir = {
+  dest: 'dist',
+  sass: 'src/**/*.scss',
+  js: 'src/**/*.js',
+  ejs: 'src/**/*.ejs',
+  img: 'src/**/*.{png,jpg,gif,svg}'
+}
 
 //sassコンパイル
 gulp.task('sass', () => {
-  return gulp.src([
-      'src/**/*.scss'
-    ])
+  return gulp.src(baseDir.sass)
     .pipe(sourcemaps.init())
-    .pipe(sass({
-      outputStyle: 'compressed'
-    }).on('error', sass.logError))
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(sourcemaps.write({includeContent: false}))
     .pipe(sourcemaps.init({loadMaps: true}))
-    .pipe(plumber({
-      errorHandler: notify.onError('<%= error.message %>')
-    }))
+    .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
     .pipe(autoprefixer({
       browsers: [
         'last 2 version',
@@ -34,53 +41,53 @@ gulp.task('sass', () => {
       ],
       cascade: false
     }))
-    .pipe(csscomb())
     .pipe(sourcemaps.write('/maps'))
-    .pipe(gulp.dest('html'))
+    .pipe(gulp.dest(baseDir.dest))
     .pipe(browserSync.stream());
 });
 
+
 gulp.task('ejs', () => {
   return gulp.src([
-      'src/*.ejs',
+      baseDir.ejs,
       '!' + 'src/**/_*.ejs'
     ])
+    .pipe(changed(baseDir.dest))
     .pipe(ejs({}, {}, {
       'ext': '.html'
     }))
     .pipe(plumber({
       errorHandler: notify.onError('<%= error.message %>')
     }))
-    .pipe(gulp.dest("html"));
+    .pipe(gulp.dest(baseDir.dest))
 });
 
-
-//js圧縮
-gulp.task('uglify', () => {
-  gulp.src('src/**/*.js')
-    .pipe(uglify({
-      preserveComments: 'license'
+//babel
+gulp.task('babel', () => {
+  gulp.src([baseDir.js, '!src/**/_*.js'])
+    .pipe(browserify({
+      insertGlobals: true,
+      debug: !gulp.env.production
     }))
+    .pipe(babel({presets: ['env']}))
+    .pipe(uglify())
     .pipe(plumber())
-    .pipe(gulp.dest('html'));
+    .pipe(gulp.dest(baseDir.dest))
+    .pipe(browserSync.stream());
 });
-
-
-//es6 => es5
-// gulp.task('babel', () => {
-//   return gulp.src('src/**/*.es6')
-//     .pipe(babel({
-//       presets: ['es2015']
-//     }))
-//     .pipe(gulp.dest('html'));
-// });
-
 
 //画像圧縮
 gulp.task('imagemin', () => {
-  gulp.src("src/**/*.+(jpg|png|gif|svg)")
+  gulp.src(baseDir.img)
+    .pipe(changed(baseDir.dest))
+    .pipe(imagemin([
+      pngquant({ quality: '75-95', speed: 1 }),
+      {use: [mozjpeg()]},
+      imagemin.svgo(),
+      imagemin.gifsicle()
+    ]))
     .pipe(imagemin())
-    .pipe(gulp.dest("html"));
+    .pipe(gulp.dest(baseDir.dest));
 });
 
 gulp.task('copy', () => {
@@ -89,31 +96,29 @@ gulp.task('copy', () => {
       '!src/_**',
       '!src/**/*.scss',
       '!src/**/*.js',
-      //'!src/**/*.es6',
       '!src/*.ejs',
       '!src/**/_*.ejs',
       '!src/*.+(jpg|png|gif|svg)'
     ])
-    .pipe(gulp.dest('html'))
+    .pipe(gulp.dest(baseDir.dest))
     .pipe(browserSync.stream());
 });
 
 gulp.task('watch', () => {
   browserSync.init({
     server: {
-      baseDir: "html"
+      baseDir: baseDir.dest
     }
   });
 
-  gulp.watch(['src/**/*.scss'], ['sass']);
-  // gulp.watch(['src/**/*.es6'], ['babel']);
-  gulp.watch(['src/*.ejs'], ['ejs']);
-  gulp.watch(['src/**/*.js'], ['uglify']);
-  gulp.watch(['src/**/*.+(jpg|png|gif|svg)'], ['imagemin']);
+  gulp.watch([baseDir.sass], ['sass']);
+  gulp.watch([baseDir.ejs], ['ejs']);
+  gulp.watch([baseDir.js], ['babel']);
+  gulp.watch([baseDir.img], ['imagemin']);
   gulp.watch([
     'src/**/*',
     '!src/**/*.scss'
   ], ['copy']);
 });
 
-gulp.task('default', ['copy','sass','ejs','uglify','imagemin','watch']);
+gulp.task('default', ['copy','sass','ejs','babel','imagemin','watch']);

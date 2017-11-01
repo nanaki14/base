@@ -1,1 +1,0 @@
-window.onunload=function(){};var Common=function(){};Common={smoothScroll:function(){$('a[href^="#"]').click(function(){return $("html,body").animate({scrollTop:$($(this).attr("href")).offset().top},"600","easeInCubic"),!1})}},$(function(){Common.smoothScroll()});
