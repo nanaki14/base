@@ -4,12 +4,15 @@
 /*==========================
         foundation
 ==========================*/
-@import "_foundation/vars";
+@import "_foundation/variable";
 @import "_foundation/function";
 @import "_foundation/mixin";
 @import "_foundation/reset";
 
-
+/*==========================
+           utility
+==========================*/
+@import "_object/_utility/utility";
 
 /*==========================
           layout
@@ -19,12 +22,6 @@
 /*==========================
           project
 ==========================*/
-
-
-/*==========================
-           utility
-==========================*/
-@import "_object/_utility/utility";
 
 
 /*==========================
