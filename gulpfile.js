@@ -20,7 +20,7 @@ const baseDir = {
   dest: 'dist',
   sass: 'src/**/*.scss',
   js: 'src/**/*.js',
-  ejs: 'src/**/*.ejs',
+  ejs: 'src/**.ejs',
   img: 'src/**/*.{png,jpg,gif,svg}'
 }
 
@@ -52,19 +52,19 @@ gulp.task('ejs', () => {
       baseDir.ejs,
       '!' + 'src/**/_*.ejs'
     ])
-    .pipe(changed(baseDir.dest))
+    // .pipe(changed(baseDir.dest))
     .pipe(ejs({}, {}, {
       'ext': '.html'
     }))
-    .pipe(plumber({
-      errorHandler: notify.onError('<%= error.message %>')
-    }))
+    .pipe(plumber())
     .pipe(gulp.dest(baseDir.dest))
+    .pipe(browserSync.stream());
 });
 
 //babel
 gulp.task('babel', () => {
   gulp.src([baseDir.js, '!src/**/_*.js'])
+    .pipe(sourcemaps.init())
     .pipe(browserify({
       insertGlobals: true,
       debug: !gulp.env.production
@@ -72,6 +72,7 @@ gulp.task('babel', () => {
     .pipe(babel({presets: ['env']}))
     .pipe(uglify())
     .pipe(plumber())
+    .pipe(sourcemaps.write('/maps'))
     .pipe(gulp.dest(baseDir.dest))
     .pipe(browserSync.stream());
 });
@@ -79,10 +80,9 @@ gulp.task('babel', () => {
 //画像圧縮
 gulp.task('imagemin', () => {
   gulp.src(baseDir.img)
-    .pipe(changed(baseDir.dest))
     .pipe(imagemin([
-      pngquant({ quality: '75-95', speed: 1 }),
-      {use: [mozjpeg()]},
+      pngquant({ quality: '75-95', speed: 1 , floyd:0}),
+      mozjpeg({ quality: 85, progressive: true }),
       imagemin.svgo(),
       imagemin.gifsicle()
     ]))
@@ -101,7 +101,6 @@ gulp.task('copy', () => {
       '!src/*.+(jpg|png|gif|svg)'
     ])
     .pipe(gulp.dest(baseDir.dest))
-    .pipe(browserSync.stream());
 });
 
 gulp.task('watch', () => {
@@ -117,7 +116,11 @@ gulp.task('watch', () => {
   gulp.watch([baseDir.img], ['imagemin']);
   gulp.watch([
     'src/**/*',
-    '!src/**/*.scss'
+    '!src/*.ejs',
+    '!src/**/*.ejs',
+    '!src/**/*.js',
+    '!src/**/*.scss',
+    '!src/**/*.+(jpg|png|gif|svg)'
   ], ['copy']);
 });
 
