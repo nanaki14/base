@@ -21,3 +21,8 @@
 @function percentSpace($thisWidth, $rootWidth) {
   @return $thisWidth / $rootWidth * 100%;
 }
+
+//z-indexの配列index取る
+@function z($name) {
+  @return index($z-index, $name);
+}
