@@ -26,8 +26,12 @@ body {
   font-size: 62.5%;
   font-weight: 500;
   line-height:1;
-  -moz-osx-font-smoothing: grayscale; // Firefox
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: unset;
+  @media only screen and(-webkit-min-device-pixel-ratio: 2),(min-resolution: 2dppx) {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
 article,

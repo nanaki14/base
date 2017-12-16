@@ -20,7 +20,7 @@ const baseDir = {
   dest: 'dist',
   sass: 'src/**/*.scss',
   js: 'src/**/*.js',
-  ejs: 'src/**.ejs',
+  ejs: ['src/**.ejs','src/**/*.ejs'],
   img: 'src/**/*.{png,jpg,gif,svg}'
 }
 
@@ -81,7 +81,7 @@ gulp.task('babel', () => {
 gulp.task('imagemin', () => {
   gulp.src(baseDir.img)
     .pipe(imagemin([
-      pngquant({ quality: '75-95', speed: 1 , floyd:0}),
+      pngquant({ quality: '85-95', speed: 1 , floyd:0}),
       mozjpeg({ quality: 85, progressive: true }),
       imagemin.svgo(),
       imagemin.gifsicle()
@@ -97,7 +97,7 @@ gulp.task('copy', () => {
       '!src/**/*.scss',
       '!src/**/*.js',
       '!src/*.ejs',
-      '!src/**/_*.ejs',
+      '!src/**/*.ejs',
       '!src/*.+(jpg|png|gif|svg)'
     ])
     .pipe(gulp.dest(baseDir.dest))
