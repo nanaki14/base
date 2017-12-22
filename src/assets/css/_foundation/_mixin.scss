@@ -2,25 +2,25 @@
        break-points
 ==========================*/
 
-@mixin mq-small-sp-only { //iphone5　size
+@mixin mq-small-sp { //iphone5　size
   @media (max-width: $xs-width) {
     @content
   }
 }
 
-@mixin mq-sp-only { //iphone↓　size
+@mixin mq-sp { //iphone↓　size
   @media (max-width: $s-width - 1px) {
     @content
   }
 }
 
-@mixin mq-small-pc-only { //ipad - ipadPro　size
+@mixin mq-small-pc { //ipad - ipadPro　size
   @media (min-width: $s-width) and (max-width: $m-width) {
     @content
   }
 }
 
-@mixin mq-large-pc-only { //1025px↑　size
+@mixin mq-large-pc { //1025px↑　size
   @media (min-width: $l-width + 1px) {
     @content
   }
@@ -54,4 +54,13 @@
   overflow: hidden;
   text-indent: 100%;
   white-space: nowrap;
+}
+@mixin textEllipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin overflow-touch{
+  -webkit-overflow-scrolling: touch;
 }
