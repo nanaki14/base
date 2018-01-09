@@ -3,7 +3,6 @@ const sass         = require('gulp-sass');
 const sourcemaps   = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 const imagemin     = require("gulp-imagemin");
-const mozjpeg      = require('imagemin-mozjpeg');
 const pngquant     = require('imagemin-pngquant');
 const gifsicle     = require('imagemin-gifsicle');
 const svgo         = require('imagemin-svgo');
@@ -88,7 +87,7 @@ gulp.task('imagemin', () => {
   gulp.src(baseDir.img)
     .pipe(imagemin([
       pngquant({ quality: '85-95', speed: 1 , floyd:0}),
-      mozjpeg({ quality: 85, progressive: true }),
+      imagemin.jpegtran({ quality: 85, progressive: true }),
       imagemin.svgo(),
       imagemin.gifsicle()
     ]))

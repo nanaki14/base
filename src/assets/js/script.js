@@ -1,5 +1,6 @@
-const $ = require("jquery");
+const $      = require("jquery");
 const easing = require("jquery.easing");
+// const TweenMax = require("gsap");
 
 const _ua = ((u) => {
   return {
