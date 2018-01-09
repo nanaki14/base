@@ -10325,11 +10325,17 @@ return jQuery;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-const $      = __webpack_require__(0);
-const easing = __webpack_require__(2);
-// const TweenMax = require("gsap");
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_easing__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_easing___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery_easing__);
+
+
+// import TweenMax from 'gsap';
 
 const _ua = ((u) => {
   return {
@@ -10352,14 +10358,14 @@ const _ua = ((u) => {
 const g = {
   isSp:function(){ return ( g.winW() <= g.point )? true : false ; },// SP or PC
   winW:function(){ return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth; },
-  winH:function(){ return $( window ).height(); },
-  winT:function(){ return $( window ).scrollTop(); },
+  winH:function(){ return __WEBPACK_IMPORTED_MODULE_0_jquery___default()( window ).height(); },
+  winT:function(){ return __WEBPACK_IMPORTED_MODULE_0_jquery___default()( window ).scrollTop(); },
   point: 768
 }
 
 let Common = function(){};
 
-$(function() {
+__WEBPACK_IMPORTED_MODULE_0_jquery___default()(function() {
 
     Common.smoothScroll();
 
@@ -10370,21 +10376,21 @@ Common = {
   //スムーススクロール
   smoothScroll : function() {
 
-    $('a[href^="#"]').click(function() {
-      $('html,body').animate({ scrollTop:
-      $($(this).attr('href')).offset().top }, '600','easeInCubic');
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('a[href^="#"]').click(function() {
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()('html,body').animate({ scrollTop:
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()(__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).attr('href')).offset().top }, '600','');
       return false;
     });
 
   },
   share : function() {
-    var shareTitle = encodeURI($('title').html());
+    var shareTitle = encodeURI(__WEBPACK_IMPORTED_MODULE_0_jquery___default()('title').html());
     var shareUrl = encodeURI(document.URL);
     var shareUrlComponent = encodeURIComponent(document.URL);
-    $('.js-twitterShare').attr("href", "http://twitter.com/share?url="+ shareUrl + "&text=" + shareTitle);
-    $('.js-facebookShare').attr("href", "http://www.facebook.com/sharer.php?u="+ shareUrl +"&t=" + shareTitle);
-    $('.js-lineShare').attr("href", "http://line.me/R/msg/text/?"+ shareUrl);
-    $('.js-pocketShare').attr("href", "http://getpocket.com/edit?url="+ shareUrl + "&title=" + shareTitle);
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.js-twitterShare').attr("href", "http://twitter.com/share?url="+ shareUrl + "&text=" + shareTitle);
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.js-facebookShare').attr("href", "http://www.facebook.com/sharer.php?u="+ shareUrl +"&t=" + shareTitle);
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.js-lineShare').attr("href", "http://line.me/R/msg/text/?"+ shareUrl);
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.js-pocketShare').attr("href", "http://getpocket.com/edit?url="+ shareUrl + "&title=" + shareTitle);
   }
 
 }
@@ -10565,3 +10571,4 @@ $.extend( $.easing,
 
 /***/ })
 /******/ ]);
+//# sourceMappingURL=script.js.map

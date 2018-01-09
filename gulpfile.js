@@ -44,7 +44,7 @@ gulp.task('sass', () => {
       ],
       cascade: false
     }))
-    .pipe(sourcemaps.write('/maps'))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(baseDir.dest))
     .pipe(browserSync.stream());
 });

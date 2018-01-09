@@ -1,6 +1,6 @@
-const $      = require("jquery");
-const easing = require("jquery.easing");
-// const TweenMax = require("gsap");
+import $ from 'jquery';
+import easing from 'jquery.easing';
+// import TweenMax from 'gsap';
 
 const _ua = ((u) => {
   return {
@@ -43,7 +43,7 @@ Common = {
 
     $('a[href^="#"]').click(function() {
       $('html,body').animate({ scrollTop:
-      $($(this).attr('href')).offset().top }, '600','easeInCubic');
+      $($(this).attr('href')).offset().top }, '600','');
       return false;
     });
 

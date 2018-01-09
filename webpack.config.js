@@ -1,6 +1,10 @@
+const path = require('path');
+
 module.exports = {
-  entry: "./src/assets/js/script.js",
+  entry: path.resolve(__dirname, './src/assets/js/script.js'),
   output: {
-    filename: "assets/js/script.js"
-  }
+    path: path.resolve(__dirname, './dist'),
+    filename: "./assets/js/script.js"
+  },
+  devtool: 'source-map'
 }
