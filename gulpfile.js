@@ -1,21 +1,22 @@
-const gulp         = require('gulp');
-const sass         = require('gulp-sass');
-const sourcemaps   = require('gulp-sourcemaps');
-const autoprefixer = require('gulp-autoprefixer');
-const imagemin     = require("gulp-imagemin");
-const pngquant     = require('imagemin-pngquant');
-const gifsicle     = require('imagemin-gifsicle');
-const svgo         = require('imagemin-svgo');
-const uglify       = require('gulp-uglify');
-const browserify   = require('gulp-browserify');
-const babel        = require('gulp-babel');
-const plumber      = require("gulp-plumber");
-const ejs          = require('gulp-ejs');
-const htmlbeautify = require('gulp-html-beautify');
-const notify       = require('gulp-notify');
-const changed      = require('gulp-changed');
-const ignore       = require('gulp-ignore');
-const browserSync  = require('browser-sync').create();
+const gulp          = require('gulp');
+const sass          = require('gulp-sass');
+const sourcemaps    = require('gulp-sourcemaps');
+const autoprefixer  = require('gulp-autoprefixer');
+const imagemin      = require("gulp-imagemin");
+const pngquant      = require('imagemin-pngquant');
+const gifsicle      = require('imagemin-gifsicle');
+const svgo          = require('imagemin-svgo');
+const uglify        = require('gulp-uglify');
+const babel         = require('gulp-babel');
+const plumber       = require("gulp-plumber");
+const ejs           = require('gulp-ejs');
+const htmlbeautify  = require('gulp-html-beautify');
+const notify        = require('gulp-notify');
+const changed       = require('gulp-changed');
+const ignore        = require('gulp-ignore');
+const webpack       = require('webpack');
+const webpackStream = require('webpack-stream');
+const browserSync   = require('browser-sync').create();
 
 const baseDir = {
   dest: 'dist',
@@ -23,6 +24,8 @@ const baseDir = {
   js: 'src/**/*.js',
   img: 'src/**/*.{png,jpg,gif,svg}'
 }
+
+const webpackConfig = require("./webpack.config");
 
 //sassコンパイル
 gulp.task('sass', () => {
@@ -68,19 +71,21 @@ gulp.task('ejs', () => {
 
 //babel
 gulp.task('babel', () => {
-  gulp.src([baseDir.js, '!src/**/_*.js'])
-    .pipe(sourcemaps.init())
-    .pipe(browserify({
-      insertGlobals: true,
-      debug: !gulp.env.production
-    }))
-    .pipe(babel({presets: ['env']}))
-    .pipe(uglify())
-    .pipe(plumber())
-    .pipe(sourcemaps.write('/maps'))
+  return webpackStream(webpackConfig, webpack)
     .pipe(gulp.dest(baseDir.dest))
     .pipe(browserSync.stream());
 });
+
+// gulp.task('babel', () => {
+//   gulp.src([baseDir.js, '!src/**/_*.js'])
+//     .pipe(sourcemaps.init())
+//     .pipe(babel({presets: ['env']}))
+//     .pipe(uglify())
+//     .pipe(plumber())
+//     .pipe(sourcemaps.write('/maps'))
+//     .pipe(gulp.dest(baseDir.dest))
+//     .pipe(browserSync.stream());
+// });
 
 //画像圧縮
 gulp.task('imagemin', () => {
