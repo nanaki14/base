@@ -11,7 +11,31 @@
 }; %><% include assets/_include/_head %>
 <% include assets/_include/_layout/_l-header %>
 
-<main></main>
+<main>
+
+  <%
+   const array = [
+     {
+       name: '人参',
+       price: '500'
+     },
+     {
+       name: 'キャベツ',
+       price: '398'
+     },
+     {
+       name: '白菜',
+       price: '600'
+     }
+   ];
+   array.map((obj, i) => {
+  %>
+    <%- include('assets/_include/_component/_test', {
+      props: {...obj}
+    }) %>
+  <% }) %>
+
+</main>
 
 <% include assets/_include/_layout/_l-footer %>
 

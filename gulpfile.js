@@ -21,8 +21,18 @@ const browserSync   = require('browser-sync').create();
 const baseDir = {
   dest: 'dist',
   sass: 'src/**/*.scss',
+  ejs: ['src/**.ejs', 'src/**/*.ejs', '!src/**/_*.ejs'],
   js: 'src/**/*.js',
-  img: 'src/**/*.{png,jpg,gif,svg}'
+  img: 'src/**/*.{png,jpg,gif,svg}',
+  copy: [
+    'src/**/*',
+    '!src/_**',
+    '!src/**/*.scss',
+    '!src/**/*.js',
+    '!src/*.ejs',
+    '!src/**/*.ejs',
+    '!src/*.+(jpg|png|gif|svg)'
+  ]
 }
 
 const webpackConfig = require("./webpack.config");
@@ -51,19 +61,15 @@ gulp.task('sass', () => {
 
 
 gulp.task('ejs', () => {
-  return gulp.src([
-      'src/**.ejs',
-      'src/**/*.ejs',
-      '!' + 'src/**/_*.ejs'
-    ])
-    .pipe(plumber())
+  return gulp.src(baseDir.ejs)
     // .pipe(changed(baseDir.dest))
+    .pipe(plumber())
     .pipe(ejs({}, {}, {
       'ext': '.html'
     }))
     .pipe(htmlbeautify({
       indent_size: 2,
-      max_preserve_newlines: 1
+      max_preserve_newlines: 0
     }))
     .pipe(gulp.dest(baseDir.dest))
     .pipe(browserSync.stream());
@@ -101,15 +107,7 @@ gulp.task('imagemin', () => {
 });
 
 gulp.task('copy', () => {
-  return gulp.src([
-      'src/**/*',
-      '!src/_**',
-      '!src/**/*.scss',
-      '!src/**/*.js',
-      '!src/*.ejs',
-      '!src/**/*.ejs',
-      '!src/*.+(jpg|png|gif|svg)'
-    ])
+  return gulp.src(baseDir.copy)
     .pipe(ignore.include({isFile: true}))
     .pipe(gulp.dest(baseDir.dest))
 });
@@ -125,14 +123,7 @@ gulp.task('watch', () => {
   gulp.watch(['src/*.ejs','src/**/*.ejs'], ['ejs']);
   gulp.watch([baseDir.js], ['babel']);
   gulp.watch([baseDir.img], ['imagemin']);
-  gulp.watch([
-    'src/**/*',
-    '!src/*.ejs',
-    '!src/**/*.ejs',
-    '!src/**/*.js',
-    '!src/**/*.scss',
-    '!src/**/*.+(jpg|png|gif|svg)'
-  ], ['copy']);
+  gulp.watch([baseDir.copy], ['copy']);
 });
 
 gulp.task('default', ['copy','sass','ejs','babel','imagemin','watch']);
