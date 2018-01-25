@@ -31,7 +31,7 @@
    array.map((obj, i) => {
   %>
     <%- include('assets/_include/_component/_test', {
-      props: {...obj}
+      ...obj
     }) %>
   <% }) %>
 
