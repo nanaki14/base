@@ -6,6 +6,27 @@ $base-color : #000000;
 //font
 $base-text-color : #222222;
 
+/*library-color
+==========================*/
+//black
+$color-black84: rgba(0,0,0,0.87);
+$color-black54: rgba(0,0,0,0.54);
+$color-black26: rgba(0,0,0,0.26);
+$color-black12: rgba(0,0,0,0.12);
+//white
+$color-white100: #FFFFFF;
+$color-white70: rgba(255,255,255,0.70);
+$color-white30: rgba(255,255,255,0.30);
+$color-white12: rgba(255,255,255,0.12);
+//sns
+$color-sns-facebook: #3A579D;
+$color-sns-github: #38393D;
+$color-sns-google: #CD5B45;
+$color-sns-hatena: #38393D;
+$color-sns-instagram: #5951D8;
+$color-sns-line: #4ECD00;
+$color-sns-twitter: #1DA1F2;
+
 
 /*==========================
         baseWidth
@@ -30,33 +51,6 @@ $z-index: (
 /*font-family
 ==========================*/
 $san-serif : -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Yu Gothic Medium', '游ゴシック Medium', YuGothic, '游ゴシック体', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', meiryo, sans-serif;
-
-/*font-size
-==========================*/
-
-//defalt
-@mixin defalt-font {
-  $fz : 16; //font-size
-  $lh : 24; //line-height
-  $ls : 50; //letter-spercing
-
-  font-size: #{($fz/10)}rem;
-  line-height: ($lh/$fz);
-  letter-spacing: #{($ls/1000)}em;
-}
-
-
-//sp-defalt
-@mixin sp-defalt-font {
-  $fz : 14; //font-size
-  $lh : 21; //line-height
-  $ls : 50; //letter-spercing
-
-  font-size: #{($fz/10)}rem;
-  line-height: ($lh/$fz);
-  letter-spacing: #{($ls/1000)}em;
-}
-
 
 /*==========================
            easing
