@@ -16,6 +16,7 @@ const changed       = require('gulp-changed');
 const ignore        = require('gulp-ignore');
 const webpack       = require('webpack');
 const webpackStream = require('webpack-stream');
+const aigis         = require('gulp-aigis');
 const browserSync   = require('browser-sync').create();
 
 const baseDir = {
@@ -24,6 +25,7 @@ const baseDir = {
   ejs: ['src/**.ejs', 'src/**/*.ejs', '!src/**/_*.ejs'],
   js: 'src/**/*.js',
   img: 'src/**/*.{png,jpg,gif,svg}',
+  aigis: 'aigis_config.yml',
   copy: [
     'src/**/*',
     '!src/_**',
@@ -104,6 +106,11 @@ gulp.task('imagemin', () => {
     ]))
     .pipe(imagemin())
     .pipe(gulp.dest(baseDir.dest));
+});
+
+gulp.task('aigis', () => {
+  return gulp.src(baseDir.aigis)
+    .pipe(aigis());
 });
 
 gulp.task('copy', () => {
