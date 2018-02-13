@@ -108,7 +108,7 @@ gulp.task('imagemin', () => {
     .pipe(gulp.dest(baseDir.dest));
 });
 
-gulp.task('aigis', () => {
+gulp.task('guide', () => {
   return gulp.src(baseDir.aigis)
     .pipe(aigis());
 });
