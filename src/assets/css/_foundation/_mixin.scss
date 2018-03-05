@@ -35,15 +35,22 @@
 /*==========================
           flex box
 ==========================*/
-@mixin flexBox($align:start, $justify:start) {
-  display: flex;
+@mixin flexBox($align:start, $justify:start, $wrap:nowarp, $block:block) {
+
+  @if $block == 'block' {
+    display: flex;
+  } @else if $block == 'inline' {
+    display: inline-flex;
+  }
 
   @if $align == 'start' {
-    align-items: flex-start
+    align-items: flex-start;
   } @else if $justify == 'center' {
     align-items: center;
   } @else if $justify == 'end' {
     align-items: flex-end;
+  } @else if $justify == 'stretch' {
+    align-items: stretch;
   }
 
   @if $justify == 'start' {
@@ -56,6 +63,12 @@
     justify-content: space-around;
   } @else if $justify == 'between' {
     justify-content: space-between;
+  }
+
+  @if $wrap == 'wrap' {
+    flex-wrap: wrap;
+  } @else if $wrap == 'nowrap' {
+    flex-wrap: nowrap;
   }
 }
 
@@ -79,7 +92,7 @@
 
 
 /*==========================
-           mixin
+           overflow
 ==========================*/
 
 @mixin textHidden {
