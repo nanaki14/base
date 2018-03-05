@@ -11,15 +11,15 @@
 }
 
 //line-heightの半分を打ち消すネガティブマージンで打ち消す
-@function halfLineHeight($fz:$fz, $lh:$lh){
+@function halfLineHeight($fz:14, $lh:1.5){
   $fz: ($fz / ((floor($fz) * 2) % 2 + 1)) * 10;
   @return (($fz * $lh) - $fz) / 2 + px;
 }
 
 //要素のパーセント求める(マージン、パディングなんでも使えるアレ)
-//percentSpace(自分の幅, 親の幅)
-@function percentSpace($thisWidth, $rootWidth) {
-  @return $thisWidth / $rootWidth * 100%;
+//percentFunc(自分の幅, 親の幅)
+@function percentFunc($thisWidth, $rootWidth:1024) {
+  @return percentage($thisWidth / $rootWidth);
 }
 
 //z-indexの配列index取る

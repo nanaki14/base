@@ -22,7 +22,7 @@ const browserSync   = require('browser-sync').create();
 const baseDir = {
   dest: 'dist',
   sass: 'src/**/*.scss',
-  ejs: ['src/**.ejs', 'src/**/*.ejs', '!src/**/_*.ejs'],
+  ejs: ['src/**.ejs', 'src/**/*.ejs', '!src/**/_*.ejs', '!src/styleguide/**/*.ejs'],
   js: 'src/**/*.js',
   img: 'src/**/*.{png,jpg,gif,svg}',
   aigis: 'aigis_config.yml',
@@ -33,6 +33,7 @@ const baseDir = {
     '!src/**/*.js',
     '!src/*.ejs',
     '!src/**/*.ejs',
+    '!src/styleguide/**',
     '!src/*.+(jpg|png|gif|svg)'
   ]
 }
@@ -127,6 +128,7 @@ gulp.task('watch', () => {
   });
 
   gulp.watch([baseDir.sass], ['sass']);
+  gulp.watch([baseDir.sass], ['guide']);
   gulp.watch(['src/*.ejs','src/**/*.ejs'], ['ejs']);
   gulp.watch([baseDir.js], ['babel']);
   gulp.watch([baseDir.img], ['imagemin']);
