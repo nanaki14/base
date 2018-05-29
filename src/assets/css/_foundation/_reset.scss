@@ -91,6 +91,10 @@ input, button, textarea, select {
   -moz-appearance: none;
 }
 
+select::-ms-expand {
+  display: none;
+}
+
 iframe {
   border: none;
 }

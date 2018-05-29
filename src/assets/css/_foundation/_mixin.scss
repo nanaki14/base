@@ -14,7 +14,7 @@
   }
 }
 
-@mixin mq-min-sp { //iphone↓　size
+@mixin mq-min-sp { //iphone↑　size
   @media (min-width: $s-width) {
     @content
   }
@@ -45,11 +45,11 @@
 
   @if $align == 'start' {
     align-items: flex-start;
-  } @else if $justify == 'center' {
+  } @else if $align == 'center' {
     align-items: center;
-  } @else if $justify == 'end' {
+  } @else if $align == 'end' {
     align-items: flex-end;
-  } @else if $justify == 'stretch' {
+  } @else if $align == 'stretch' {
     align-items: stretch;
   }
 

@@ -2,10 +2,6 @@ const gulp          = require('gulp');
 const sass          = require('gulp-sass');
 const sourcemaps    = require('gulp-sourcemaps');
 const autoprefixer  = require('gulp-autoprefixer');
-const imagemin      = require("gulp-imagemin");
-const pngquant      = require('imagemin-pngquant');
-const gifsicle      = require('imagemin-gifsicle');
-const svgo          = require('imagemin-svgo');
 const uglify        = require('gulp-uglify');
 const babel         = require('gulp-babel');
 const plumber       = require("gulp-plumber");
@@ -85,30 +81,6 @@ gulp.task('babel', () => {
     .pipe(browserSync.stream());
 });
 
-// gulp.task('babel', () => {
-//   gulp.src([baseDir.js, '!src/**/_*.js'])
-//     .pipe(sourcemaps.init())
-//     .pipe(babel({presets: ['env']}))
-//     .pipe(uglify())
-//     .pipe(plumber())
-//     .pipe(sourcemaps.write('/maps'))
-//     .pipe(gulp.dest(baseDir.dest))
-//     .pipe(browserSync.stream());
-// });
-
-//画像圧縮
-gulp.task('imagemin', () => {
-  gulp.src(baseDir.img)
-    .pipe(imagemin([
-      pngquant({ quality: '85-95', speed: 1 , floyd:0}),
-      imagemin.jpegtran({ quality: 85, progressive: true }),
-      imagemin.svgo(),
-      imagemin.gifsicle()
-    ]))
-    .pipe(imagemin())
-    .pipe(gulp.dest(baseDir.dest));
-});
-
 gulp.task('guide', () => {
   return gulp.src(baseDir.aigis)
     .pipe(aigis());
@@ -131,8 +103,7 @@ gulp.task('watch', () => {
   gulp.watch([baseDir.sass], ['guide']);
   gulp.watch(['src/*.ejs','src/**/*.ejs'], ['ejs']);
   gulp.watch([baseDir.js], ['babel']);
-  gulp.watch([baseDir.img], ['imagemin']);
   gulp.watch([baseDir.copy], ['copy']);
 });
 
-gulp.task('default', ['copy','sass','ejs','babel','imagemin','watch']);
+gulp.task('default', ['copy','sass','ejs','babel','watch']);
