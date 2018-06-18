@@ -23,7 +23,11 @@
     "document": false,
     "navigator": false,
     "window": false,
-    "$": false
+    "$": false,
+    "TweenMax": false,
+    "TweenLite": false,
+    "Power3": false,
+    "ScrollToPlugin": false
   },
 
   "rules": {

@@ -13,8 +13,7 @@ module.exports = {
       sourceMap: true
     }),
     new webpack.ProvidePlugin({
-      $: 'jquery',
-      TweenMax: 'gsap'
+      TweenLite: ['gsap', 'TweenLite']
     })
   ],
   module: {

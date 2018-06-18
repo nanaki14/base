@@ -4,7 +4,7 @@ const sourcemaps    = require('gulp-sourcemaps');
 const autoprefixer  = require('gulp-autoprefixer');
 const uglify        = require('gulp-uglify');
 const babel         = require('gulp-babel');
-const plumber       = require("gulp-plumber");
+const plumber       = require('gulp-plumber');
 const ejs           = require('gulp-ejs');
 const htmlbeautify  = require('gulp-html-beautify');
 const notify        = require('gulp-notify');
@@ -34,7 +34,7 @@ const baseDir = {
   ]
 }
 
-const webpackConfig = require("./webpack.config");
+const webpackConfig = require('./webpack.config');
 
 //sassコンパイル
 gulp.task('sass', () => {
