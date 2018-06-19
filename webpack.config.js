@@ -7,7 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     filename: './assets/js/script.js'
   },
-  devtool: '#eval-source-map',
+  devtool: process.env.NODE_ENV === 'production' ? false : '#eval-source-map',
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true
