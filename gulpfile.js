@@ -1,19 +1,19 @@
-const gulp          = require('gulp');
-const sass          = require('gulp-sass');
-const sourcemaps    = require('gulp-sourcemaps');
-const autoprefixer  = require('gulp-autoprefixer');
-const plumber       = require('gulp-plumber');
-const ejs           = require('gulp-ejs');
-const htmlbeautify  = require('gulp-html-beautify');
-const notify        = require('gulp-notify');
-const ignore        = require('gulp-ignore');
-const webpack       = require('webpack');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
+const autoprefixer = require('gulp-autoprefixer');
+const plumber = require('gulp-plumber');
+const ejs = require('gulp-ejs');
+const htmlbeautify = require('gulp-html-beautify');
+const notify = require('gulp-notify');
+const ignore = require('gulp-ignore');
+const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
-const aigis         = require('gulp-aigis');
-const browserSync   = require('browser-sync').create();
-const mode          = require('gulp-mode')();
-const del           = require('del');
-const runSequence   = require('run-sequence');
+const aigis = require('gulp-aigis');
+const browserSync = require('browser-sync').create();
+const mode = require('gulp-mode')();
+const del = require('del');
+const runSequence = require('run-sequence');
 
 const baseDir = {
   dest: 'dist',
@@ -38,18 +38,30 @@ const webpackConfig = require('./webpack.config');
 
 gulp.task('copy', () => {
   return gulp.src(baseDir.copy)
-    .pipe(ignore.include({isFile: true}))
+    .pipe(ignore.include({
+      isFile: true
+    }))
     .pipe(gulp.dest(baseDir.dest))
 });
 
 gulp.task('sass', () => {
   return gulp.src(baseDir.sass)
     .pipe(mode.development(sourcemaps.init()))
-    .pipe(mode.development(sass({outputStyle: 'expanded'}).on('error', sass.logError)))
-    .pipe(mode.production(sass({outputStyle: 'compressed'}).on('error', sass.logError)))
-    .pipe(mode.development(sourcemaps.write({includeContent: false})))
-    .pipe(mode.development(sourcemaps.init({loadMaps: true})))
-    .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
+    .pipe(mode.development(sass({
+      outputStyle: 'expanded'
+    }).on('error', sass.logError)))
+    .pipe(mode.production(sass({
+      outputStyle: 'compressed'
+    }).on('error', sass.logError)))
+    .pipe(mode.development(sourcemaps.write({
+      includeContent: false
+    })))
+    .pipe(mode.development(sourcemaps.init({
+      loadMaps: true
+    })))
+    .pipe(plumber({
+      errorHandler: notify.onError('<%= error.message %>')
+    }))
     .pipe(autoprefixer({
       browsers: [
         'last 2 version',
@@ -81,8 +93,8 @@ gulp.task('ejs', () => {
 
 gulp.task('babel', () => {
   return webpackStream({
-    config: webpackConfig,
-  }, webpack)
+      config: webpackConfig,
+    }, webpack)
     .pipe(gulp.dest(baseDir.dest))
     .pipe(browserSync.stream());
 });
@@ -105,7 +117,7 @@ gulp.task('watch', () => {
 
   gulp.watch([baseDir.sass], ['sass']);
   gulp.watch([baseDir.sass], ['guide']);
-  gulp.watch(['src/*.ejs','src/**/*.ejs'], ['ejs']);
+  gulp.watch(['src/*.ejs', 'src/**/*.ejs'], ['ejs']);
   gulp.watch([baseDir.js], ['babel']);
   gulp.watch([baseDir.copy], ['copy']);
 });

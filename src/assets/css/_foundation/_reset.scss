@@ -5,10 +5,8 @@
 
 html {
   box-sizing: border-box;
-
   * {
     box-sizing: inherit;
-
     &:before,
     &:after {
       box-sizing: border-box;
@@ -25,10 +23,10 @@ body {
   font-family: $san-serif;
   font-size: 62.5%;
   font-weight: 500;
-  line-height:1;
+  line-height: 1;
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: unset;
-  @media only screen and(-webkit-min-device-pixel-ratio: 2),(min-resolution: 2dppx) {
+  @media only screen and(-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -54,7 +52,7 @@ h6 {
 }
 
 ul {
-  list-style:none;
+  list-style: none;
 }
 
 img {
@@ -64,8 +62,8 @@ img {
 }
 
 table {
-  border-collapse:collapse;
-  border-spacing:0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 th,
@@ -80,7 +78,10 @@ a {
 }
 
 //form reset
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   margin: 0;
   padding: 0;
   background: none;

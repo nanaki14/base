@@ -1,37 +1,32 @@
 @charset "utf-8";
-
 /*==========================
         foundation
 ==========================*/
-@import "_foundation/variable";
-@import "_foundation/function";
-@import "_foundation/mixin";
-@import "_foundation/reset";
 
+@import '_foundation/variable';
+@import '_foundation/function';
+@import '_foundation/mixin';
+@import '_foundation/reset';
 /*==========================
            utility
 ==========================*/
-@import "_object/_utility/utility";
 
+@import '_object/_utility/utility';
 /*==========================
           layout
 ==========================*/
-
 
 /*==========================
           project
 ==========================*/
 
-
 /*==========================
           component
 ==========================*/
 
-
 /*==========================
            scope
 ==========================*/
-
 
 /*
 ---

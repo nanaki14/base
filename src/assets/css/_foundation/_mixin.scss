@@ -2,72 +2,83 @@
        break-points
 ==========================*/
 
-@mixin mq-small-sp { //iphone5　size
+@mixin mq-small-sp {
+  //iphone5　size
   @media (max-width: $xs-width) {
-    @content
+    @content;
   }
 }
 
-@mixin mq-sp { //iphone↓　size
+@mixin mq-sp {
+  //iphone↓　size
   @media (max-width: $s-width - 1px) {
-    @content
+    @content;
   }
 }
 
-@mixin mq-min-sp { //iphone↑　size
+@mixin mq-min-sp {
+  //iphone↑　size
   @media (min-width: $s-width) {
-    @content
+    @content;
   }
 }
 
-@mixin mq-small-pc { //ipad - ipadPro　size
+@mixin mq-small-pc {
+  //ipad - ipadPro　size
   @media (min-width: $s-width) and (max-width: $m-width) {
-    @content
+    @content;
   }
 }
 
-@mixin mq-large-pc { //1025px↑　size
+@mixin mq-large-pc {
+  //1025px↑　size
   @media (min-width: $l-width + 1px) {
-    @content
+    @content;
   }
 }
 
 /*==========================
           flex box
 ==========================*/
-@mixin flexBox($align:start, $justify:start, $wrap:nowarp, $block:block) {
 
-  @if $block == 'block' {
+@mixin flexBox($align: start, $justify: start, $wrap: nowarp, $block: block) {
+  @if $block=='block' {
     display: flex;
-  } @else if $block == 'inline' {
+  }
+  @else if $block=='inline' {
     display: inline-flex;
   }
-
-  @if $align == 'start' {
+  @if $align=='start' {
     align-items: flex-start;
-  } @else if $align == 'center' {
+  }
+  @else if $align=='center' {
     align-items: center;
-  } @else if $align == 'end' {
+  }
+  @else if $align=='end' {
     align-items: flex-end;
-  } @else if $align == 'stretch' {
+  }
+  @else if $align=='stretch' {
     align-items: stretch;
   }
-
-  @if $justify == 'start' {
+  @if $justify=='start' {
     justify-content: flex-start;
-  } @else if $justify == 'center' {
+  }
+  @else if $justify=='center' {
     justify-content: center;
-  } @else if $justify == 'end' {
+  }
+  @else if $justify=='end' {
     justify-content: flex-end;
-  } @else if $justify == 'around' {
+  }
+  @else if $justify=='around' {
     justify-content: space-around;
-  } @else if $justify == 'between' {
+  }
+  @else if $justify=='between' {
     justify-content: space-between;
   }
-
-  @if $wrap == 'wrap' {
+  @if $wrap=='wrap' {
     flex-wrap: wrap;
-  } @else if $wrap == 'nowrap' {
+  }
+  @else if $wrap=='nowrap' {
     flex-wrap: nowrap;
   }
 }
@@ -90,7 +101,6 @@
   -ms-grid-row-span: $end - $start;
 }
 
-
 /*==========================
            overflow
 ==========================*/
@@ -100,12 +110,13 @@
   text-indent: 100%;
   white-space: nowrap;
 }
+
 @mixin textEllipsis {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-@mixin overflow-touch{
+@mixin overflow-touch {
   -webkit-overflow-scrolling: touch;
 }
