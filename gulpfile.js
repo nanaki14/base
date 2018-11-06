@@ -1,19 +1,20 @@
-const gulp = require('gulp');
-const sass = require('gulp-sass');
-const sourcemaps = require('gulp-sourcemaps');
-const autoprefixer = require('gulp-autoprefixer');
-const plumber = require('gulp-plumber');
-const ejs = require('gulp-ejs');
-const htmlbeautify = require('gulp-html-beautify');
-const notify = require('gulp-notify');
-const ignore = require('gulp-ignore');
-const webpack = require('webpack');
-const webpackStream = require('webpack-stream');
-const aigis = require('gulp-aigis');
-const browserSync = require('browser-sync').create();
-const mode = require('gulp-mode')();
-const del = require('del');
-const runSequence = require('run-sequence');
+const gulp = require('gulp')
+const sass = require('gulp-sass')
+const sourcemaps = require('gulp-sourcemaps')
+const postcss = require('gulp-postcss')
+const autoprefixer = require('autoprefixer')
+const plumber = require('gulp-plumber')
+const ejs = require('gulp-ejs')
+const htmlbeautify = require('gulp-html-beautify')
+const notify = require('gulp-notify')
+const ignore = require('gulp-ignore')
+const webpack = require('webpack')
+const webpackStream = require('webpack-stream')
+const aigis = require('gulp-aigis')
+const browserSync = require('browser-sync').create()
+const mode = require('gulp-mode')()
+const del = require('del')
+const runSequence = require('run-sequence')
 
 const baseDir = {
   dest: 'dist',
@@ -34,7 +35,7 @@ const baseDir = {
   ]
 }
 
-const webpackConfig = require('./webpack.config');
+const webpackConfig = require('./webpack.config')
 
 gulp.task('copy', () => {
   return gulp.src(baseDir.copy)
@@ -42,7 +43,7 @@ gulp.task('copy', () => {
       isFile: true
     }))
     .pipe(gulp.dest(baseDir.dest))
-});
+})
 
 gulp.task('sass', () => {
   return gulp.src(baseDir.sass)
@@ -62,19 +63,21 @@ gulp.task('sass', () => {
     .pipe(plumber({
       errorHandler: notify.onError('<%= error.message %>')
     }))
-    .pipe(autoprefixer({
-      browsers: [
-        'last 2 version',
-        'Explorer >= 11',
-        'iOS >= 8.1',
-        'Android >= 4.4'
-      ],
-      cascade: false
-    }))
+    .pipe(postcss([
+      autoprefixer({
+        browsers: [
+          'last 2 versions',
+          'ie >= 11',
+          'Android >= 4.4'
+        ],
+        grid: true,
+        cascade: false
+      })
+    ]))
     .pipe(mode.development(sourcemaps.write('.')))
     .pipe(gulp.dest(baseDir.dest))
-    .pipe(browserSync.stream());
-});
+    .pipe(browserSync.stream())
+})
 
 
 gulp.task('ejs', () => {
@@ -88,42 +91,42 @@ gulp.task('ejs', () => {
       max_preserve_newlines: 0
     }))
     .pipe(gulp.dest(baseDir.dest))
-    .pipe(browserSync.stream());
-});
+    .pipe(browserSync.stream())
+})
 
 gulp.task('babel', () => {
   return webpackStream({
       config: webpackConfig,
     }, webpack)
     .pipe(gulp.dest(baseDir.dest))
-    .pipe(browserSync.stream());
-});
+    .pipe(browserSync.stream())
+})
 
 gulp.task('guide', () => {
   return gulp.src(baseDir.aigis)
-    .pipe(aigis());
-});
+    .pipe(aigis())
+})
 
 gulp.task('clean', () => {
   return del(['dist/'])
-});
+})
 
 gulp.task('watch', () => {
   browserSync.init({
     server: {
       baseDir: baseDir.dest
     }
-  });
+  })
 
-  gulp.watch([baseDir.sass], ['sass']);
-  gulp.watch([baseDir.sass], ['guide']);
-  gulp.watch(['src/*.ejs', 'src/**/*.ejs'], ['ejs']);
-  gulp.watch([baseDir.js], ['babel']);
-  gulp.watch([baseDir.copy], ['copy']);
-});
+  gulp.watch([baseDir.sass], ['sass'])
+  gulp.watch([baseDir.sass], ['guide'])
+  gulp.watch(['src/*.ejs', 'src/**/*.ejs'], ['ejs'])
+  gulp.watch([baseDir.js], ['babel'])
+  gulp.watch([baseDir.copy], ['copy'])
+})
 
-gulp.task('default', ['copy', 'sass', 'ejs', 'babel', 'watch']);
+gulp.task('default', ['copy', 'sass', 'ejs', 'babel', 'watch'])
 
 gulp.task('build', () => runSequence(
   'clean', 'copy', 'sass', 'ejs', 'babel'
-));
+))
