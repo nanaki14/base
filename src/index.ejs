@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
 <% var root = './'
 %><% var meta = {
     title:'site name',
@@ -8,28 +11,14 @@
     type:'website',
     url:'http://hogehoge.jp',
     image:'https://example.com/image.jpg'
-}; %><% include assets/_include/_head %>
-<% include assets/_include/_layout/_l-header %>
+}; %><% include assets/_include/_config/_meta %>
+</head>
+<body>
+<% include assets/_include/_layout/_header %>
 
 <main>
-
-  <%
-   const array = [
-     {
-       name: '人参',
-       price: '500'
-     },
-     {
-       name: 'キャベツ',
-       price: '398'
-     },
-     {
-       name: '白菜',
-       price: '600'
-     }
-   ];
-   array.map((obj, i) => {
-  %>
+  <%- include('assets/_include/_data/_index') %>
+  <% array.map((obj, i) => { %>
     <%- include('assets/_include/_component/_test', {
       ...obj
     }) %>
@@ -43,16 +32,18 @@
     <a href="#section02" class="js-smoothScroll">section02</a>
   </div>
 
-  <section id="section01">
+  <section class="js-inview" id="section01">
     section01
   </section>
-  <section id="section02">
+  <section class="js-inview" id="section02">
     section02
   </section>
 
 </main>
 
-<% include assets/_include/_layout/_l-footer %>
+<% include assets/_include/_layout/_footer %>
 
 <% include assets/_include/_script %>
-<% include assets/_include/_foot %>
+</body>
+</html>
+

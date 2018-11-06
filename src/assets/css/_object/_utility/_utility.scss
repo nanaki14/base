@@ -2,8 +2,12 @@
           helpers
 ==========================*/
 
-/*display
+/* display
 ==========================*/
+.u-display-n {
+  display: none !important;
+}
+
 .u-hidden-pc {
   display: none !important;
 
@@ -24,7 +28,7 @@
   }
 }
 
-/*text-align
+/* text-align
 ==========================*/
 .u-text-left {
   text-align: left !important;
@@ -36,4 +40,11 @@
 
 .u-text-center {
   text-align: center !important;
+}
+
+/* state
+==========================*/
+.is-disabled {
+  pointer-events: none !important;
+  cursor: defaultß;
 }

@@ -1,7 +1,11 @@
 import { TweenLite, Power3 } from 'gsap'
 const ScrollToPlugin = require('gsap/ScrollToPlugin') // eslint-disable-line no-unused-vars
 
-/* user agent */
+/* ===================================================================
+*
+* user agent
+*
+=================================================================== */
 export const uaDevice = ((u) => {
   return {
     Tablet:
@@ -24,7 +28,11 @@ export const uaDevice = ((u) => {
   }
 })(window.navigator.userAgent.toLowerCase())
 
-/* 各種シェア */
+/* ===================================================================
+*
+* 各種シェア
+*
+=================================================================== */
 export const socialShare = (url, title) => {
   const twitterShare = document.getElementsByClassName('js-twitterShare')
   const facebookShare = document.getElementsByClassName('js-facebookShare')
@@ -95,7 +103,11 @@ export const socialShare = (url, title) => {
   }
 }
 
-/* スムーススクロール */
+/* ===================================================================
+*
+* スムーススクロール
+*
+=================================================================== */
 export const smoothScroll = (offset) => {
   let scrollLink = document.getElementsByClassName('js-smoothScroll')
   const _offset = offset || 0
