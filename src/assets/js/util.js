@@ -1,7 +1,4 @@
-import {
-  TweenLite,
-  Power3
-} from 'gsap'
+import { TweenLite, Power3 } from 'gsap'
 const ScrollToPlugin = require('gsap/ScrollToPlugin') // eslint-disable-line no-unused-vars
 
 /* user agent */
