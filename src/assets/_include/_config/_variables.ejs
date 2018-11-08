@@ -1,0 +1,35 @@
+<%
+  /* *
+   * グローバル変数
+   * _meta.ejs 内で読み込み全体で使用する
+  */
+
+  // サイトのルート
+  // ============================//
+  siteDir = '/'
+
+  // 各アセットディレクトリへのパス
+  // ============================//
+  baseDir = {
+    css: `${siteDir}assets/css`,
+    img: `${siteDir}assets/images`,
+    js: `${siteDir}assets/js`,
+  }
+
+  // ベースのmeta情報
+  // ============================//
+  head = {
+    title: 'site_title',
+    description: 'site_desc',
+    favicon16: `${baseDir.img}/favicon-16.png`,
+    favicon32: `${baseDir.img}/favicon-32.png`,
+
+    og: {
+      url: 'url',
+      type: 'type',
+      title: 'title',
+      image: 'image',
+      description: 'description'
+    }
+  }
+%>

@@ -7,11 +7,13 @@
 @import '_foundation/function';
 @import '_foundation/mixin';
 @import '_foundation/reset';
+
 /*==========================
            utility
 ==========================*/
 
 @import '_object/_utility/utility';
+
 /*==========================
           layout
 ==========================*/
@@ -53,6 +55,3 @@ tag: latest
   background-color: tomato;
 }
 
-section {
-  height: 1000px;
-}

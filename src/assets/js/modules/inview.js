@@ -1,8 +1,8 @@
 class Inview {
   /**
    * constructor
-   * @param {string} 付与する対象
-   * @param {string} 付与するクラス
+   * @param {string} - 付与する対象
+   * @param {string} - 付与するクラス
    */
   constructor(targetClass, activeClass) {
     this.targetClass = targetClass
@@ -15,7 +15,6 @@ class Inview {
   }
 
   start() {
-    console.log('inview')
     for (let i = 0; i < this.target.length; i++) {
       let targetHeight = this.target[i].offsetHeight
       let targetClass = this.target[i].classList

@@ -1,49 +1,40 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<% var root = './'
-%><% var meta = {
+<%- include('assets/_include/_config/_meta', {
+  meta: {
+    title:'HOME',
+    description:'このサイトの説明'
+  },
+  og: {
     title:'site name',
-    desc:'このサイトの説明'
-}; %><% var og = {
-    title:'site name',
-    desc:'このサイトの説明',
+    description:'このサイトの説明',
     type:'website',
     url:'http://hogehoge.jp',
     image:'https://example.com/image.jpg'
-}; %><% include assets/_include/_config/_meta %>
+  }
+}); %>
 </head>
 <body>
 <% include assets/_include/_layout/_header %>
 
 <main>
-  <%- include('assets/_include/_data/_index') %>
-  <% array.map((obj, i) => { %>
+  <%
+    const array = [
+      { name: '人参', price: '500' },
+      { name: 'キャベツ', price: '398' },
+      { name: '白菜', price: '600' }
+    ];
+    array.map((obj, i) => { %>
     <%- include('assets/_include/_component/_test', {
       ...obj
     }) %>
   <% }) %>
-
-  <a href="" class="js-twitterShare js-shareBtn">twitter</a><br>
-  <a href="" class="js-facebookShare js-shareBtn">facebook</a>
-
-  <div>
-    <a href="#section01" class="js-smoothScroll">section01</a>
-    <a href="#section02" class="js-smoothScroll">section02</a>
-  </div>
-
-  <section class="js-inview" id="section01">
-    section01
-  </section>
-  <section class="js-inview" id="section02">
-    section02
-  </section>
-
 </main>
 
 <% include assets/_include/_layout/_footer %>
 
-<% include assets/_include/_script %>
+<% include assets/_include/_config/_script %>
 </body>
 </html>
 

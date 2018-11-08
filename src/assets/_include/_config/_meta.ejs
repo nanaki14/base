@@ -1,20 +1,22 @@
-<meta charset="UTF-8">
+<%-
+  include('./_variables')
+%><meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="<%= meta.desc %>">
+<meta name="description" content="<% if (meta.description.length) {%> <%= meta.description %><% } else { %><%= head.description %><% } %>">
 <meta name="robots" content="index,follow,noodp">
 <meta name="googlebot" content="index,follow">
 
-<link rel="icon" href="/images/favicon-16.png" sizes="16x16" type="image/png">
-<link rel="icon" href="/images/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="<%= head.favicon16 %>" sizes="16x16" type="image/png">
+<link rel="icon" href="<%= head.favicon32 %>" sizes="32x32" type="image/png">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:url" content="<%= og.url %>">
-<meta property="og:type" content="<%= og.type %>">
-<meta property="og:title" content="<%= og.title %>">
-<meta property="og:image" content="<%= og.image %>">
-<meta property="og:description" content="<%= og.desc %>">
+<meta property="og:url" content="<% if (og.url.length) {%> <%= og.url %> <% } else { %><%= head.og.url %><% } %>">
+<meta property="og:type" content="<% if (og.type.length) {%> <%= og.type %> <% } else { %><%= head.og.type %><% } %>">
+<meta property="og:title" content="<% if (og.title.length) {%> <%= og.title %> <% } else { %><%= head.og.title %><% } %>">
+<meta property="og:image" content="<% if (og.image.length) {%> <%= og.image %> <% } else { %><%= head.og.image %><% } %>">
+<meta property="og:description" content="<% if (og.description.length) {%> <%= og.description %> <% } else { %><%= head.og.description %><% } %>">
 
-<title><%= meta.title %></title>
+<title><%= meta.title %><% if (meta.title.length) {%> | <% } %><%= head.title %></title>
 
-<link rel="stylesheet" href="<%= root %>assets/css/style.css">
+<link rel="stylesheet" href="<%= baseDir.css %>/style.css">
