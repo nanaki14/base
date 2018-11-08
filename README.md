@@ -44,7 +44,7 @@ aigisを使用
 
 scssにこの形でコメントを記述してgulpタスクを実行すると `styleguide/` に出力
 
-```
+~~~
 /*
 ---
 name: ComponentName
@@ -59,7 +59,7 @@ tag: TagName
 
 ```html
 <div class="c-comp">lorem</div>
-\```
+```
 
 */
-```
+~~~
