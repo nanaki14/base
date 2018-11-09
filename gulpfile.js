@@ -103,6 +103,9 @@ gulp.task('babel', () => {
   return webpackStream({
       config: webpackConfig,
     }, webpack)
+    .on('error', function () {
+      this.emit('end');
+    })
     .pipe(gulp.dest(baseDir.dest))
     .pipe(browserSync.stream())
 })
