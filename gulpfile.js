@@ -83,7 +83,12 @@ gulp.task('sass', () => {
 gulp.task('ejs', () => {
   return gulp.src(baseDir.ejs)
     .pipe(plumber())
-    .pipe(ejs({}, {}, {
+    .pipe(ejs({
+      Develop: mode.development(),
+      Date: new Date().getTime()
+    }, {
+      rmWhitespace: true
+    }, {
       'ext': '.html'
     }))
     .pipe(htmlbeautify({

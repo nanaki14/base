@@ -36,11 +36,11 @@ eslint(standard)
 
 prettier(standard)
 
-## styleguide
+# styleguide
 
 aigisを使用
 
-### 使用方法
+## 使用方法
 
 scssにこの形でコメントを記述してgulpタスクを実行すると `styleguide/` に出力
 
@@ -63,3 +63,13 @@ tag: TagName
 
 */
 ~~~
+
+# EJS
+
+## global変数
+
+`Develop` - `NODE_ENV=development` 時にtrueを返す
+
+`Date` - `new Date().getTime()` を返す、主にタイムスタンプに使用
+
+

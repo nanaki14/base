@@ -39,7 +39,7 @@ export const socialShare = (url, title) => {
   const hatenaShare = document.getElementsByClassName('js-hatenaShare')
   const lineShare = document.getElementsByClassName('js-lineShare')
   const shareBtn = document.getElementsByClassName('js-shareBtn')
-  if (twitterShare) {
+  if (twitterShare.length) {
     for (let i = 0; i < twitterShare.length; i++) {
       twitterShare[i].setAttribute(
         'href',
@@ -47,7 +47,7 @@ export const socialShare = (url, title) => {
       )
     }
   }
-  if (facebookShare) {
+  if (facebookShare.length) {
     for (let i = 0; i < facebookShare.length; i++) {
       facebookShare[i].setAttribute(
         'href',
@@ -55,8 +55,7 @@ export const socialShare = (url, title) => {
       )
     }
   }
-  if (pocketShare) {
-    console.log('hoge')
+  if (pocketShare.length) {
     for (let i = 0; i < pocketShare.length; i++) {
       pocketShare[i].setAttribute(
         'href',
@@ -64,7 +63,7 @@ export const socialShare = (url, title) => {
       )
     }
   }
-  if (hatenaShare) {
+  if (hatenaShare.length) {
     for (let i = 0; i < pocketShare.length; i++) {
       pocketShare[i].setAttribute(
         'href',
@@ -72,7 +71,7 @@ export const socialShare = (url, title) => {
       )
     }
   }
-  if (lineShare) {
+  if (lineShare.length) {
     for (let i = 0; i < lineShare.length; i++) {
       if (uaDevice.Tablet || uaDevice.Mobile) {
         lineShare[i].setAttribute(
@@ -87,7 +86,7 @@ export const socialShare = (url, title) => {
       }
     }
   }
-  if (shareBtn) {
+  if (shareBtn.length) {
     for (let i = 0; i < shareBtn.length; i++) {
       shareBtn[i].addEventListener('click', (e) => {
         e.preventDefault()
