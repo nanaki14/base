@@ -12,6 +12,3 @@ window.addEventListener('load', () => {
 window.addEventListener('scroll', () => {
   inview.start()
 })
-
-const hoge = 'test'
-console.log(hoge)
