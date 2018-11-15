@@ -2,8 +2,8 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   entry: [
-    'babel-polyfill',
     path.resolve(__dirname, './src/assets/js/script.js')
   ],
   output: {
@@ -12,19 +12,29 @@ module.exports = {
   },
   devtool: process.env.NODE_ENV === 'production' ? false : '#eval-source-map',
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true
-    }),
     new webpack.ProvidePlugin({
       TweenLite: ['gsap', 'TweenLite']
     })
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader?cacheDirectory=true'
+        use: {
+          loader: 'babel-loader?cacheDirectory=true',
+          options: {
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  'useBuiltIns': 'usage',
+                  'targets': '> 0.25%, not dead'
+                }
+              ]
+            ]
+          }
+        }
       }
     ]
   }
