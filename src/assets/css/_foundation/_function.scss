@@ -26,3 +26,8 @@
 @function z($name) {
   @return index($z-index, $name);
 }
+
+//remに変換
+@function rem($size: 14) {
+  @return $size / 16 + rem;
+}

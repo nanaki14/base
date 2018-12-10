@@ -3226,6 +3226,16 @@ gulp-replace@^1.0.0:
     readable-stream "^2.0.1"
     replacestream "^4.0.0"
 
+gulp-sass-glob@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/gulp-sass-glob/-/gulp-sass-glob-1.0.9.tgz#749549a320d1545a9b3258880734828ab2911e28"
+  dependencies:
+    glob "^7.1.2"
+    minimatch "^3.0.4"
+    safe-buffer "^5.1.1"
+    slash "^2.0.0"
+    through2 "^2.0.3"
+
 gulp-sass@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/gulp-sass/-/gulp-sass-4.0.2.tgz#cfb1e3eff2bd9852431c7ce87f43880807d8d505"
@@ -6123,6 +6133,10 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
 simple-concat@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/simple-concat/-/simple-concat-1.0.0.tgz#7344cbb8b6e26fb27d66b2fc86f9f6d5997521c6"
+
+slash@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/slash/-/slash-2.0.0.tgz#de552851a1759df3a8f206535442f5ec4ddeab44"
 
 slice-ansi@1.0.0:
   version "1.0.0"

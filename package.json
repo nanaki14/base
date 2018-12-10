@@ -36,6 +36,7 @@
     "gulp-postcss": "^8.0.0",
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.0.2",
+    "gulp-sass-glob": "^1.0.9",
     "gulp-sourcemaps": "^1.12.1",
     "prettier": "^1.14.3",
     "prettier-eslint": "^8.8.2",

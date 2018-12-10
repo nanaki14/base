@@ -1,5 +1,6 @@
 const gulp = require('gulp')
 const sass = require('gulp-sass')
+const sassGlob = require("gulp-sass-glob")
 const sourcemaps = require('gulp-sourcemaps')
 const postcss = require('gulp-postcss')
 const autoprefixer = require('autoprefixer')
@@ -50,6 +51,7 @@ gulp.task('copy', () => {
 gulp.task('sass', () => {
   return gulp.src(baseDir.sass)
     .pipe(mode.development(sourcemaps.init()))
+    .pipe(sassGlob())
     .pipe(mode.development(sass({
       outputStyle: 'expanded'
     }).on('error', sass.logError)))

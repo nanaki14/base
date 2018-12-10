@@ -2,7 +2,7 @@
 
 ## node version
 
-`10.13.0`
+`10.11.0`
 
 ## install
 
