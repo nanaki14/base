@@ -1,10 +1,14 @@
-# setup
+## info
+  - gulp: 4.0.0
+  - webpack: 4.25.1
 
-## node version
+## setup
+
+### node version
 
 `10.11.0`
 
-## install
+### install
 
 ```
 npm install
@@ -16,31 +20,31 @@ or
 yarn
 ```
 
-## commands
+### commands
 
 usage `yarn [COMMAND_NAME]` or `npm run [COMMAND_NAME]`
 
-### dev
+#### dev
 
 開発用タスク、ソースマップが使用可能なことやソースのminifyがされないなど
 
-### build
+#### build
 
 公開用ファイルの生成、ソースマップの削除やソースのminifyが可能
 
-### lint
+#### lint
 
 eslint(standard)
 
-### format
+#### format
 
 prettier(standard)
 
-# styleguide
+## styleguide
 
 aigisを使用
 
-## 使用方法
+### 使用方法
 
 scssにこの形でコメントを記述してgulpタスクを実行すると `styleguide/` に出力
 
@@ -64,9 +68,9 @@ tag: TagName
 */
 ~~~
 
-# EJS
+## EJS
 
-## global変数
+### global変数
 
 `Develop` - `NODE_ENV=development` 時にtrueを返す
 
