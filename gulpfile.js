@@ -132,15 +132,15 @@ gulp.task('watch', () => {
     }
   })
 
-  gulp.watch([baseDir.sass], ['sass'])
-  gulp.watch([baseDir.sass], ['guide'])
-  gulp.watch(['src/*.ejs', 'src/**/*.ejs'], ['ejs'])
-  gulp.watch([baseDir.js], ['babel'])
-  gulp.watch([baseDir.copy], ['copy'])
+  gulp.watch([baseDir.sass], gulp.task('sass'))
+  gulp.watch([baseDir.sass], gulp.task('guide'))
+  gulp.watch(['src/*.ejs', 'src/**/*.ejs'], gulp.task('ejs'))
+  gulp.watch([baseDir.js], gulp.task('babel'))
+  gulp.watch(baseDir.copy, gulp.task('copy'))
 })
 
-gulp.task('default', ['copy', 'sass', 'ejs', 'babel', 'watch'])
+gulp.task('default', gulp.parallel('copy', 'sass', 'ejs', 'babel', 'watch'))
 
-gulp.task('build', () => runSequence(
-  'clean', 'copy', 'sass', 'ejs', 'babel'
+gulp.task('build', gulp.series(
+  'clean', 'copy', 'sass', 'guide', 'ejs', 'babel'
 ))

@@ -13,7 +13,8 @@ module.exports = {
   devtool: process.env.NODE_ENV === 'production' ? false : '#eval-source-map',
   plugins: [
     new webpack.ProvidePlugin({
-      TweenLite: ['gsap', 'TweenLite']
+      $: 'jquery',
+      jQuery: 'jquery'
     })
   ],
   module: {
