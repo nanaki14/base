@@ -17,7 +17,6 @@ const header = require('gulp-header')
 const replace = require('gulp-replace')
 const mode = require('gulp-mode')()
 const del = require('del')
-const runSequence = require('run-sequence')
 
 const baseDir = {
   dest: 'dist',

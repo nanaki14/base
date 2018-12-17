@@ -1,31 +1,31 @@
+import platform from 'platform'
 import { TweenLite, Power3 } from 'gsap'
 const ScrollToPlugin = require('gsap/ScrollToPlugin') // eslint-disable-line no-unused-vars
 
 /**
- * user agent
- * @param {string}
+ * user agent判定関数 (ua.ios or ua.android のように使う)
 */
-export const uaDevice = ((u) => {
+export const ua = () => {
+  const os = platform.os.family
   return {
-    Tablet:
-      (u.indexOf('windows') !== -1 &&
-        u.indexOf('touch') !== -1 &&
-        u.indexOf('tablet pc') === -1) ||
-      u.indexOf('ipad') !== -1 ||
-      (u.indexOf('android') !== -1 && u.indexOf('mobile') === -1) ||
-      (u.indexOf('firefox') !== -1 && u.indexOf('tablet') !== -1) ||
-      u.indexOf('kindle') !== -1 ||
-      u.indexOf('silk') !== -1 ||
-      u.indexOf('playbook') !== -1,
-    Mobile:
-      (u.indexOf('windows') !== -1 && u.indexOf('phone') !== -1) ||
-      u.indexOf('iphone') !== -1 ||
-      u.indexOf('ipod') !== -1 ||
-      (u.indexOf('android') !== -1 && u.indexOf('mobile') !== -1) ||
-      (u.indexOf('firefox') !== -1 && u.indexOf('mobile') !== -1) ||
-      u.indexOf('blackberry') !== -1
+    ie: platform.name === 'IE',
+    ios: os === 'iOS',
+    android: os === 'Android'
   }
-})(window.navigator.userAgent.toLowerCase())
+}
+
+/**
+ * メディアクエリ判定関数 必要に応じて拡張して使ってください
+*/
+
+export const mq = () => {
+  const breakpoints = {
+    s: 767
+  }
+  return {
+    isSp: window.matchMedia(`screen and (max-width: ${breakpoints.s}px)`).matches
+  }
+}
 
 /**
  * 各種シェア
@@ -73,7 +73,7 @@ export const socialShare = (url, title) => {
   }
   if (lineShare.length) {
     for (let i = 0; i < lineShare.length; i++) {
-      if (uaDevice.Tablet || uaDevice.Mobile) {
+      if (ua().ios || ua().android) {
         lineShare[i].setAttribute(
           'href',
           `line://msg/text/?${encodeURIComponent(title + '\n')}${url}`
