@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const PrettierPlugin = require('prettier-webpack-plugin')
 
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -15,6 +16,16 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
+    }),
+    new PrettierPlugin({
+      singleQuote: true,
+      semi: false,
+      tabWidth: 2,
+      printWidth: 200,
+      useTabs: false,
+      trailingComma: 'none',
+      bracketSpacing: true,
+      arrowParens: 'always'
     })
   ],
   module: {
