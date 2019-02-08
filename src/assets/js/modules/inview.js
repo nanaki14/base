@@ -24,10 +24,7 @@ class Inview {
       let screenHeight = window.innerHeight
       let targetPosition = offsetY - screenHeight
 
-      if (
-        -screenHeight <= targetPosition + targetHeight &&
-        targetPosition < -screenHeight / 6
-      ) {
+      if (-screenHeight <= targetPosition + targetHeight && targetPosition < -screenHeight / 6) {
         if (!targetClass.contains(this.activeClass)) {
           targetClass.add(this.activeClass)
         }
