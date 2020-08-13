@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <%- include('assets/_include/_config/_meta', { meta: { title:'HOME',
-    description:'このサイトの説明' }, og: { title:'site name',
-    description:'このサイトの説明', type:'website', url:'http://hogehoge.jp',
+    <%- include('assets/_include/_config/_meta', { meta: { title:'ABOUT',
+    description:'ABOUT' }, og: { title:'ABOUT', description:'ABOUT',
+    type:'website', url:'http://hogehoge.jp/about',
     image:'https://example.com/image.jpg' } }); %>
   </head>
   <body>
@@ -11,7 +11,7 @@
       <%- include('assets/_include/_layout/_header') %>
 
       <main data-barba="container">
-        <a href="/about.html">about</a>
+        <a href="/">/</a>
         <% const array = [ { name: '人参', price: '500' }, { name: 'キャベツ',
         price: '398' }, { name: '白菜', price: '600' } ]; array.map((obj, i) =>
         { %> <%- include('assets/_include/_component/_test', { ...obj }) %> <%

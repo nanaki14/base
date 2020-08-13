@@ -6,14 +6,15 @@
 
   // サイトのルート
   // ============================//
+  THEME_NAME = 'mytheme'
   siteDir = '/'
 
   // 各アセットディレクトリへのパス
   // ============================//
   baseDir = {
-    css: `${siteDir}assets/css`,
-    img: `${siteDir}assets/images`,
-    js: `${siteDir}assets/js`,
+    css: `${siteDir}assets/wp-content/themes/${THEME_NAME}/css`,
+    img: `${siteDir}assets/wp-content/themes/${THEME_NAME}/images`,
+    js: `${siteDir}assets/wp-content/themes/${THEME_NAME}/js`,
   }
 
   // ベースのmeta情報

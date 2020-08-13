@@ -10,24 +10,25 @@
     "node": true
   },
 
-  "extends": [
-    "standard"
-  ],
-
-  "plugins": [
-    "import",
-    "node",
-    "promise",
-    "standard"
-  ],
+  "extends": ["standard", "plugin:prettier/recommended"],
 
   "globals": {
     "document": false,
     "navigator": false,
-    "window": false
+    "window": false,
+    "$": false,
+    "jQuery": false
   },
 
   "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "semi": false
+      }
+    ],
+    "no-dupe-class-members": "off",
     "space-before-function-paren": 0
   }
 }

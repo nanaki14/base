@@ -2,3 +2,4 @@
 styleguide
 gulpfile.js
 webpack.config.js
+*.ts

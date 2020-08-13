@@ -16,15 +16,18 @@ class Inview {
 
   start() {
     for (let i = 0; i < this.target.length; i++) {
-      let targetHeight = this.target[i].offsetHeight
-      let targetClass = this.target[i].classList
+      const targetHeight = this.target[i].offsetHeight
+      const targetClass = this.target[i].classList
 
-      let offsetY = this.target[i].getBoundingClientRect().top
+      const offsetY = this.target[i].getBoundingClientRect().top
 
-      let screenHeight = window.innerHeight
-      let targetPosition = offsetY - screenHeight
+      const screenHeight = window.innerHeight
+      const targetPosition = offsetY - screenHeight
 
-      if (-screenHeight <= targetPosition + targetHeight && targetPosition < -screenHeight / 6) {
+      if (
+        -screenHeight <= targetPosition + targetHeight &&
+        targetPosition < -screenHeight / 6
+      ) {
         if (!targetClass.contains(this.activeClass)) {
           targetClass.add(this.activeClass)
         }

@@ -1,7 +1,10 @@
 import * as Util from './modules/util'
 import Inview from './modules/inview'
+import { barbaInit } from './modules/barba'
 
 const inview = new Inview('js-inview', 'is-inview')
+
+barbaInit()
 
 window.addEventListener('load', () => {
   console.log(Util.ua().ios)
